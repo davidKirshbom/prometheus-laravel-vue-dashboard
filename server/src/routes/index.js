@@ -1,11 +1,10 @@
-// filepath: src/routes/index.js
 const express = require('express');
 const router = express.Router();
-const { httpRequestCounter } = require('../metrics/defaultMetrics');
+const { requestCounter } = require('../metrics/httpMetrics');
 
 router.get('/', (req, res) => {
-    httpRequestCounter.inc({ method: req.method, route: req.path, status_code: 200 });
-    res.send('Hello World!');
+    requestCounter.inc({ method: req.method, route: req.path, status_code: 200 });
+    res.send('server is up and running');
 });
 
 module.exports = router;
