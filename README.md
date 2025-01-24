@@ -18,13 +18,13 @@ Clone the repository to your local machine:
 
 ```bash
 git clone https://github.com/davidKirshbom/prometheus-laravel-vue-dashboard.git
-cd prometheus-dashboard
+cd  prometheus-laravel-vue-dashboard
 ```
 
 ### 2. Project Structure
 
 ```plaintext
-prometheus-dashboard/
+prometheus-laravel-vue-dashboard/
 ├── server/               # Source code for the Node.js Server
 ├── load-generator-bot/   # Source code for the Load Generator Bot
 ├── dashboard/            # Source code for the Laravel & Vue.js project
