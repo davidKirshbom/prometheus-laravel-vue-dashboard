@@ -17,7 +17,7 @@ Ensure you have the following installed:
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/your-repo/prometheus-dashboard.git
+git clone https://github.com/davidKirshbom/prometheus-laravel-vue-dashboard.git
 cd prometheus-dashboard
 ```
 
