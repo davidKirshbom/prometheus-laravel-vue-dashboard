@@ -95,7 +95,7 @@ docker-compose up --build
 ### 5. Access the Services
 
 - **Laravel API**: [http://localhost:8000](http://localhost:8000) - Provides endpoints like `/api/qps` for QPS data.
-- **Frontend Dashboard**: [http://localhost:8080](http://localhost:8080) - Displays the QPS metrics in real-time with a chart.
+- **Frontend Dashboard**: [http://localhost:8000](http://localhost:8000) - Displays the QPS metrics in real-time with a chart.
 - **Prometheus UI**: [http://localhost:9090](http://localhost:9090) - For monitoring and querying Prometheus metrics.
 - **Server**: [http://localhost:3000](http://localhost:3000) - Node.js service exposing metrics.
 
