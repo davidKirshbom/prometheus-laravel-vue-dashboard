@@ -1,0 +1,7 @@
+FROM alpine:latest
+
+# Install Prometheus and gettext (for envsubst)
+RUN apk add --no-cache prometheus gettext
+
+# Set Prometheus as the entrypoint
+ENTRYPOINT ["/bin/prometheus"]

@@ -1,0 +1,64 @@
+version: '3.8'
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: server
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - app-network
+
+  load-generator:
+    build:
+      context: ./load-generator-bot
+      dockerfile: Dockerfile
+    container_name: load-generator
+    depends_on:
+      - server
+    environment:
+      - TARGET_URL=http://server:3000/orders
+      - TRAFFIC_PATTERN=medium
+    networks:
+      - app-network
+
+  prometheus:
+    build:
+      context: ./prometheus
+      dockerfile: Dockerfile.prometheus
+    container_name: prometheus
+    environment:
+      - TARGET_HOST=server
+      - TARGET_PORT=3000
+    volumes:
+      - ./prometheus/prometheus.yml.template:/etc/prometheus/prometheus.yml.template
+    entrypoint: /bin/sh -c "envsubst < /etc/prometheus/prometheus.yml.template > /etc/prometheus/prometheus.yml && prometheus --config.file=/etc/prometheus/prometheus.yml"
+    ports:
+      - "9090:9090"
+    networks:
+      - app-network
+
+  dashboard:
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile
+    container_name: dashboard
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=local
+      - APP_PROMETHEUS_HOST=prometheus
+      - APP_PROMETHEUS_PORT=9090
+    depends_on:
+      - server
+      - prometheus
+    networks:
+      - app-network
+   
+
+networks:
+  app-network:
+    driver: bridge

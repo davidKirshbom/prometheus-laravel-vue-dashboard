@@ -1,0 +1,8 @@
+{
+    "require": {
+        "laravel/ui": "^4.6"
+    },
+    "require-dev": {
+        "laravel/sail": "^1.40"
+    }
+}
